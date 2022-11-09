@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:github_api_v2/screen/user/widget/search_user_box.dart';
+import 'package:github_api_v2/screen/user/widget/user_card_item2.dart';
 
 import '../../controller/user_controller.dart';
 import '../../model/github_user.dart';
@@ -30,7 +31,7 @@ class UserScreen extends StatelessWidget {
               ),
               SizedBox(height: 10,),
               GetBuilder<UserController>(
-                builder: (_) => buildUserCards(userController.userList),
+                builder: (_) => buildUserCardGrid(userController.userList),
               ),
             ],
           ),
@@ -38,8 +39,22 @@ class UserScreen extends StatelessWidget {
   }
 }
 
-Widget buildUserCards(List<GitHubUser> userList) {
-  return Column(
-    children: userList.map((user) => UserCardItem(user: user)).toList(),
+Widget buildUserCardGrid(List<GitHubUser> userList) {
+  double width = Get.mediaQuery.size.width;
+  print(width);
+  int crossAxisCount = (width<500) ? 1 : (width<800) ? 1 : 2;
+  print(width/crossAxisCount);
+
+  return Container(
+    width: width*0.7,
+    height: 900,
+    child: GridView.count(
+      crossAxisCount: crossAxisCount,
+      childAspectRatio: 32/9,
+      // padding: const EdgeInsets.all(4.0),
+      mainAxisSpacing: 4.0,
+      crossAxisSpacing: 4.0,
+      children: userList.map((user) => UserCardItem2(user: user)).toList(),
+    ),
   );
 }
