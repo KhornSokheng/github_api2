@@ -42,24 +42,28 @@ class RepositoryCard extends StatelessWidget {
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-                    Icon(Icons.more_vert_sharp,
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        Chip(
+                          label: Text( repository.visibility ?? ""),
+                        ),
+                        Icon(Icons.more_vert_sharp,),
+                      ],
                     ),
+
                   ],
                 ),
-                Row(
-                  children: [
-                    Icon(Icons.remove_red_eye,
+                Chip(
+                  avatar: CircleAvatar(
+                    backgroundColor: Colors.transparent,
+                    child: Icon(Icons.remove_red_eye,
                       color: Colors.green,
                     ),
-                    SizedBox(width: 5,),
-                    AutoSizeText(
-                      repository.watchersCount.toString(),
-                    ),
-                  ],
-                ),
-                AutoSizeText(
-                  repository.visibility ?? "",
-
+                  ),
+                  label: Text(
+                    repository.watchersCount.toString(),
+                  ),
                 ),
                 AutoSizeText(
                   "Language: " + (repository.language == null ? "": repository.language),

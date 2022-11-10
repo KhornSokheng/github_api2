@@ -48,11 +48,11 @@ Widget buildUserCardGrid(List<GitHubUser> userList, BuildContext context) {
 
   return SizedBox(
     width: width>800 ? width*0.7 : width*0.9,
-    height: 900,
+    height: 3000,
     child: GridView.count(
       crossAxisCount: crossAxisCount,
       childAspectRatio: 32/9,
-      // padding: const EdgeInsets.all(4.0),
+      padding: const EdgeInsets.only(bottom: 150.0),
       mainAxisSpacing: 4.0,
       crossAxisSpacing: 4.0,
       children: userList.map((user) => UserCardItem2(user: user)).toList(),

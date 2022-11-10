@@ -13,7 +13,7 @@ class SearchUserBox extends StatelessWidget {
     double width = MediaQuery.of(context).size.width;
 
     return SizedBox(
-      width: kIsWeb ? 450 : width*0.9,
+      width: kIsWeb ? width*0.7 : width*0.9,
       height: 50,
       child: TextField(
           controller: userController.searchUserTextController,
