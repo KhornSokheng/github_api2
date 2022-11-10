@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:github_api_v2/controller/repository_controller.dart';
@@ -10,8 +11,10 @@ class SearchRepositoryBox extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double width = MediaQuery.of(context).size.width;
+
     return SizedBox(
-      width: 500,
+      width: kIsWeb ? width*0.7 : width*0.9,
       height: 50,
       child: TextField(
           controller: repositoryController.searchRepositoryTextController,

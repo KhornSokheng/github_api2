@@ -20,6 +20,7 @@ class UserScreen extends StatelessWidget {
     return Scaffold(
         appBar: AppBar(
           title: Text("Git Hub User"),
+          centerTitle: true,
         ),
         body: SingleChildScrollView(
           child: Column(
@@ -31,7 +32,7 @@ class UserScreen extends StatelessWidget {
               ),
               SizedBox(height: 10,),
               GetBuilder<UserController>(
-                builder: (_) => buildUserCardGrid(userController.userList),
+                builder: (_) => buildUserCardGrid(userController.userList, context),
               ),
             ],
           ),
@@ -39,14 +40,14 @@ class UserScreen extends StatelessWidget {
   }
 }
 
-Widget buildUserCardGrid(List<GitHubUser> userList) {
-  double width = Get.mediaQuery.size.width;
+Widget buildUserCardGrid(List<GitHubUser> userList, BuildContext context) {
+  double width = MediaQuery.of(context).size.width;
   print(width);
   int crossAxisCount = (width<500) ? 1 : (width<800) ? 1 : 2;
   print(width/crossAxisCount);
 
-  return Container(
-    width: width*0.7,
+  return SizedBox(
+    width: width>800 ? width*0.7 : width*0.9,
     height: 900,
     child: GridView.count(
       crossAxisCount: crossAxisCount,

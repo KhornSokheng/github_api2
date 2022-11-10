@@ -46,14 +46,6 @@ class RepositoryCard extends StatelessWidget {
                     ),
                   ],
                 ),
-                AutoSizeText(
-                  "Language: " + (repository.language == null ? "": repository.language),
-
-                ),
-                AutoSizeText(
-                  repository.visibility ?? "",
-
-                ),
                 Row(
                   children: [
                     Icon(Icons.remove_red_eye,
@@ -65,6 +57,16 @@ class RepositoryCard extends StatelessWidget {
                     ),
                   ],
                 ),
+                AutoSizeText(
+                  repository.visibility ?? "",
+
+                ),
+                AutoSizeText(
+                  "Language: " + (repository.language == null ? "": repository.language),
+
+                ),
+
+
                 AutoSizeText(
                   repository.updatedAt.toString(),
                 ),

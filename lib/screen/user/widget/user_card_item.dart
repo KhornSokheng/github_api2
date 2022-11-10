@@ -1,4 +1,5 @@
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
@@ -14,7 +15,7 @@ class UserCardItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    double width = Get.width ;
+    double width = MediaQuery.of(context).size.width ;
 
     return InkWell(
       onTap: () => Get.to(() => RepositoryScreen(user: user)),
@@ -22,7 +23,7 @@ class UserCardItem extends StatelessWidget {
       child: Container(
           height: 230,
           margin: const EdgeInsets.symmetric(vertical: 5),
-          width: width,
+          width: kIsWeb ? width*0.7 : width,
           child: Stack(
             children: [
               Positioned(
