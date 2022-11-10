@@ -1,9 +1,8 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:github_api_v2/screen/repository/widget/search_repository_box.dart';
+import 'package:github_api_v2/screen/repository/widget/user_card_web.dart';
 import 'package:github_api_v2/screen/repository/widget/year_dropdown_button.dart';
 import 'package:github_api_v2/screen/user/widget/user_card_item.dart';
 import 'package:github_api_v2/screen/user/widget/user_card_item2.dart';
@@ -36,7 +35,7 @@ class RepositoryScreen extends StatelessWidget {
         child: Center(
           child: Column(
             children: [
-              UserCardItem(user: user),
+              kIsWeb ? UserCardWeb(user: user) : UserCardItem(user: user),
               SizedBox(height: 10,),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,

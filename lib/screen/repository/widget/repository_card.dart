@@ -34,19 +34,28 @@ class RepositoryCard extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    AutoSizeText(
-                      repository.name!,
-                      maxLines: 1,
-                      style: TextStyle(
-                        color: Colors.blueAccent,
-                        fontWeight: FontWeight.bold,
+                    Expanded(
+                      flex: 3,
+                      child: AutoSizeText(
+                        repository.name!,
+                        // softWrap: true,
+                        overflow: TextOverflow.ellipsis,
+                        maxLines: 1,
+                        style: TextStyle(
+                          color: Colors.blueAccent,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 16
+                        ),
                       ),
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
                         Chip(
-                          label: Text( repository.visibility ?? ""),
+                          backgroundColor: Colors.grey[300],
+                          label: Text( repository.visibility ?? "",
+
+                          ),
                         ),
                         Icon(Icons.more_vert_sharp,),
                       ],
@@ -54,16 +63,20 @@ class RepositoryCard extends StatelessWidget {
 
                   ],
                 ),
+                Divider(height: 8, thickness: 2, endIndent: 10,),
                 Chip(
                   avatar: CircleAvatar(
                     backgroundColor: Colors.transparent,
                     child: Icon(Icons.remove_red_eye,
-                      color: Colors.green,
+                      color: Colors.black45
                     ),
                   ),
                   label: Text(
                     repository.watchersCount.toString(),
                   ),
+                    backgroundColor: Colors.grey[300],
+                    // shape: RoundedRectangleBorder(borderRadius: BorderRadius.only(topRight: Radius.circular(20),bottomRight: Radius.circular(20))),
+
                 ),
                 AutoSizeText(
                   "Language: " + (repository.language == null ? "": repository.language),
@@ -74,12 +87,19 @@ class RepositoryCard extends StatelessWidget {
                 AutoSizeText(
                   repository.updatedAt.toString(),
                 ),
-                AutoSizeText(
-                  repository.htmlUrl!,
-                  maxLines: 2,
-                  style: TextStyle(
-                    color: Colors.black,
-                  ),
+                Row(
+                  children: [
+                    AutoSizeText("default branch: "),
+                    Chip(
+                      backgroundColor: Colors.grey[300],
+                      label: Text( repository.defaultBranch ?? "",
+                        style: TextStyle(
+                          color: Colors.blueAccent[200],
+                        ),
+                      ),
+                    ),
+
+                  ],
                 )
               ]
           ),
