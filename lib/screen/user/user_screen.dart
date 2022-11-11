@@ -6,6 +6,7 @@ import 'package:github_api_v2/screen/user/widget/user_card_item2.dart';
 
 import '../../controller/user_controller.dart';
 import '../../model/github_user.dart';
+import '../util/utility.dart';
 import 'widget/user_card_item.dart';
 
 class UserScreen extends StatelessWidget {
@@ -22,20 +23,27 @@ class UserScreen extends StatelessWidget {
           title: Text("Git Hub User"),
           centerTitle: true,
         ),
-        body: SingleChildScrollView(
-          child: Column(
-            children: [
-              SizedBox(height: 10,),
-              Center(
-                child: SearchUserBox(),
+        body: Column(
+          children: [
+            SizedBox(height: 10,),
+            Center(
+              child: SearchUserBox(),
 
+            ),
+            SizedBox(height: 10,),
+            Expanded(
+              child: SingleChildScrollView(
+                child: GetBuilder<UserController>(
+                  builder: (_) {
+                    return
+                    userController.tempUserList.isEmpty ? showProgressIndicator() :
+                    userController.userList.isEmpty ? showEmptySearchResult() :
+                    buildUserCardGrid(userController.userList, context);
+                  },
+                ),
               ),
-              SizedBox(height: 10,),
-              GetBuilder<UserController>(
-                builder: (_) => buildUserCardGrid(userController.userList, context),
-              ),
-            ],
-          ),
+            ),
+          ],
         ));
   }
 }
@@ -46,7 +54,7 @@ Widget buildUserCardGrid(List<GitHubUser> userList, BuildContext context) {
 
   return SizedBox(
     width: width>800 ? width*0.7 : width*0.9,
-    height: 3000,
+    height: 1000,
     child: GridView.count(
       crossAxisCount: crossAxisCount,
       childAspectRatio: 32/9,

@@ -1,19 +1,23 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:intl/intl.dart';
 
 import '../../../model/repository_model.dart';
 
-class RepositoryCard extends StatelessWidget {
+class RepositoryCard extends StatefulWidget {
 
   Repository repository;
   RepositoryCard({required this.repository});
 
+  @override
+  State<RepositoryCard> createState() => _RepositoryCardState();
+}
 
+class _RepositoryCardState extends State<RepositoryCard> {
   @override
   Widget build(BuildContext context) {
+
     return InkWell(
       onTap: () {
         Get.defaultDialog();
@@ -38,7 +42,7 @@ class RepositoryCard extends StatelessWidget {
                     Expanded(
                       flex: 3,
                       child: AutoSizeText(
-                        repository.name!,
+                        widget.repository.name!,
                         // softWrap: true,
                         overflow: TextOverflow.ellipsis,
                         maxLines: 1,
@@ -54,7 +58,7 @@ class RepositoryCard extends StatelessWidget {
                       children: [
                         Chip(
                           backgroundColor: Colors.grey[300],
-                          label: Text( repository.visibility ?? "",
+                          label: Text( widget.repository.visibility ?? "",
 
                           ),
                         ),
@@ -72,25 +76,25 @@ class RepositoryCard extends StatelessWidget {
                     ),
                     SizedBox(width: 10,),
                     Text(
-                      repository.watchersCount.toString(),
+                      widget.repository.watchersCount.toString(),
                     ),
                   ],
                 ),
                 AutoSizeText(
-                  "Language: " + (repository.language == null ? "": repository.language),
+                  "Language: " + (widget.repository.language == null ? "": widget.repository.language),
 
                 ),
 
 
                 AutoSizeText(
-                    "Updated: ${DateFormat.yMd().format(repository.updatedAt!)}",
+                    "Updated: ${DateFormat.yMd().format(widget.repository.updatedAt!)}",
                 ),
                 Row(
                   children: [
                     AutoSizeText("Branch: "),
                     Chip(
                       backgroundColor: Colors.grey[300],
-                      label: Text( repository.defaultBranch ?? "",
+                      label: Text( widget.repository.defaultBranch ?? "",
                         style: TextStyle(
                           color: Colors.blueAccent[200],
                         ),
