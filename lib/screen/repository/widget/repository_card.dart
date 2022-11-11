@@ -2,6 +2,7 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
+import 'package:intl/intl.dart';
 
 import '../../../model/repository_model.dart';
 
@@ -64,19 +65,16 @@ class RepositoryCard extends StatelessWidget {
                   ],
                 ),
                 Divider(height: 8, thickness: 2, endIndent: 10,),
-                Chip(
-                  avatar: CircleAvatar(
-                    backgroundColor: Colors.transparent,
-                    child: Icon(Icons.remove_red_eye,
-                      color: Colors.black45
+                Row(
+                  children: [
+                    Icon(Icons.remove_red_eye,
+                        color: Colors.black45
                     ),
-                  ),
-                  label: Text(
-                    repository.watchersCount.toString(),
-                  ),
-                    backgroundColor: Colors.grey[300],
-                    // shape: RoundedRectangleBorder(borderRadius: BorderRadius.only(topRight: Radius.circular(20),bottomRight: Radius.circular(20))),
-
+                    SizedBox(width: 10,),
+                    Text(
+                      repository.watchersCount.toString(),
+                    ),
+                  ],
                 ),
                 AutoSizeText(
                   "Language: " + (repository.language == null ? "": repository.language),
@@ -85,11 +83,11 @@ class RepositoryCard extends StatelessWidget {
 
 
                 AutoSizeText(
-                  repository.updatedAt.toString(),
+                    "Updated: ${DateFormat.yMd().format(repository.updatedAt!)}",
                 ),
                 Row(
                   children: [
-                    AutoSizeText("default branch: "),
+                    AutoSizeText("Branch: "),
                     Chip(
                       backgroundColor: Colors.grey[300],
                       label: Text( repository.defaultBranch ?? "",

@@ -3,6 +3,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
+import 'package:github_api_v2/data/api_call.dart';
 import 'package:github_api_v2/model/github_user.dart';
 
 import '../../repository/repository_screen.dart';
@@ -16,8 +17,6 @@ class UserCardItem2 extends StatelessWidget {
   Widget build(BuildContext context) {
 
     double width = MediaQuery.of(context).size.width;
-    double height = MediaQuery.of(context).size.height;
-    // print(width);
 
     return InkWell(
       onTap: () => Get.to(() => RepositoryScreen(user: user)),
@@ -31,9 +30,10 @@ class UserCardItem2 extends StatelessWidget {
         ),
         clipBehavior: Clip.antiAliasWithSaveLayer,
         child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Container(
+              margin: EdgeInsets.only(left: 20),
               height: kIsWeb || width >500 ? 120 : 80,
               width: kIsWeb || width >500 ? 120 : 80,
               decoration: BoxDecoration(
@@ -61,15 +61,32 @@ class UserCardItem2 extends StatelessWidget {
                   ),
                 ),
                 SizedBox(height: 15),
-                AutoSizeText(user.htmlUrl!,
-                  maxLines: 2,
-                  style: const TextStyle(
-                    color: Colors.grey,
-                    fontWeight: FontWeight.bold,
-                    // fontSize: 16
+                MouseRegion(
+                  cursor: SystemMouseCursors.click,
+                  child: GestureDetector(
+                    onTap: ()=>ApiCall().goToUrl(user.htmlUrl!),
+                    child: Tooltip(
+                      message: user.htmlUrl!,
+
+                      child: AutoSizeText(user.htmlUrl!,
+                        maxLines: 2,
+                        style: const TextStyle(
+                          color: Colors.grey,
+                          fontWeight: FontWeight.bold,
+                          // fontSize: 16
+                        ),
+                      ),
+                    ),
                   ),
                 ),
               ],
+            ),
+            Container(
+              width: 50,
+              color: Colors.grey[400],
+              child: Center(
+                child: Icon(Icons.arrow_forward_ios_outlined),
+              ),
             )
 
           ],

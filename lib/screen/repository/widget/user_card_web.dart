@@ -3,6 +3,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
+import 'package:github_api_v2/data/api_call.dart';
 import 'package:github_api_v2/model/github_user.dart';
 
 import '../../repository/repository_screen.dart';
@@ -16,8 +17,6 @@ class UserCardWeb extends StatelessWidget {
   Widget build(BuildContext context) {
 
     double width = MediaQuery.of(context).size.width;
-    double height = MediaQuery.of(context).size.height;
-    // print(width);
 
     return SizedBox(
       width: width*0.7,
@@ -52,14 +51,20 @@ class UserCardWeb extends StatelessWidget {
               children: [
                 Row(
                   children: [
-                    AutoSizeText(
-                      user.login!,
-                      maxLines: 1,
-                      softWrap: true,
-                      style: const TextStyle(
-                        color: Colors.blueAccent,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 20,
+                    MouseRegion(
+                      cursor: SystemMouseCursors.click,
+                      child: GestureDetector(
+                        onTap: () => ApiCall().goToUrl(user.htmlUrl!),
+                        child: AutoSizeText(
+                          user.login!,
+                          maxLines: 1,
+                          softWrap: true,
+                          style: const TextStyle(
+                            color: Colors.blueAccent,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 20,
+                          ),
+                        ),
                       ),
                     ),
                     // AutoSizeText(user.htmlUrl!,
@@ -76,44 +81,12 @@ class UserCardWeb extends StatelessWidget {
 
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: const [
-                    AutoSizeText(
-                      "7 Repositories",
-                      maxLines: 1,
-                      softWrap: true,
-                      style: TextStyle(
-                        color: Colors.orangeAccent,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    VerticalDivider(
-                      width: 20,
-                      thickness: 3,
-                      color: Colors.blueAccent,
-                    ),
-                    AutoSizeText(
-                      "10 Followers",
-                      maxLines: 1,
-                      softWrap: true,
-                      style: TextStyle(
-                        color: Colors.orangeAccent,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    VerticalDivider(
-                      width: 20,
-                      thickness: 3,
-                      color: Colors.blueAccent,
-                    ),
-                    AutoSizeText(
-                      "10 Followings",
-                      maxLines: 1,
-                      softWrap: true,
-                      style: TextStyle(
-                        color: Colors.orangeAccent,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
+                  children: [
+                    buildDetail("30 Repositories"),
+                    buildDetail("10 Followers"),
+                    buildDetail("10 Followings"),
+                    buildDetail("233 Contributions"),
+
                   ],
                 )
               ],
@@ -121,6 +94,26 @@ class UserCardWeb extends StatelessWidget {
           ],
         ),
       ),
+    );
+  }
+  Widget buildDetail(String text){
+    return Row(
+      children: [
+        AutoSizeText(
+          text,
+          maxLines: 1,
+          softWrap: true,
+          style: const TextStyle(
+            color: Colors.orangeAccent,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        const VerticalDivider(
+          width: 20,
+          thickness: 3,
+          color: Colors.blueAccent,
+        ),
+      ],
     );
   }
 }

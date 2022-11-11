@@ -17,6 +17,7 @@ class SearchRepositoryBox extends StatelessWidget {
       width: kIsWeb ? width*0.7 : width*0.9,
       height: 50,
       child: TextField(
+          autofocus: true,
           controller: repositoryController.searchRepositoryTextController,
           onChanged: (v) => repositoryController.searchRepository(),
           decoration: const InputDecoration(

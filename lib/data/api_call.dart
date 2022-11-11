@@ -2,6 +2,7 @@
 import 'dart:convert';
 
 import 'package:http/http.dart' as http;
+import 'package:url_launcher/url_launcher.dart';
 
 import '../model/repository_model.dart';
 import '../model/github_user.dart';
@@ -48,6 +49,14 @@ class ApiCall {
     }else {
       print('Request failed with status: ${response.statusCode}.');
       return 0;
+    }
+  }
+
+  Future<void> goToUrl(String urlString) async {
+    final Uri url = Uri.parse(urlString);
+
+    if(! await launchUrl(url)){
+      throw 'Could not launch $url';
     }
   }
 

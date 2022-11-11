@@ -33,7 +33,7 @@ class RepositoryController extends GetxController {
     //
     // });
 
-    print(yearList);
+    // print(yearList);
     //
     // print(selectedYear);
     // print( repositoryList.map((res) {

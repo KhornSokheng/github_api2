@@ -42,9 +42,7 @@ class UserScreen extends StatelessWidget {
 
 Widget buildUserCardGrid(List<GitHubUser> userList, BuildContext context) {
   double width = MediaQuery.of(context).size.width;
-  print(width);
   int crossAxisCount = (width<500) ? 1 : (width<800) ? 1 : 2;
-  print(width/crossAxisCount);
 
   return SizedBox(
     width: width>800 ? width*0.7 : width*0.9,
