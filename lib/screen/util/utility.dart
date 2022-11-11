@@ -7,8 +7,6 @@ class showProgressIndicator extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Center(
-      widthFactor: 10,
-      heightFactor: 10,
       child: SpinKitPouringHourGlassRefined(
         size: 80,
         color: Colors.blue,
@@ -24,8 +22,6 @@ class showEmptySearchResult extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Center(
-      widthFactor: 10,
-      heightFactor: 10,
       child: Text(
         "No Result...",
         style: TextStyle(

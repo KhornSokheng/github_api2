@@ -32,15 +32,13 @@ class UserScreen extends StatelessWidget {
             ),
             SizedBox(height: 10,),
             Expanded(
-              child: SingleChildScrollView(
-                child: GetBuilder<UserController>(
-                  builder: (_) {
-                    return
-                    userController.tempUserList.isEmpty ? showProgressIndicator() :
-                    userController.userList.isEmpty ? showEmptySearchResult() :
-                    buildUserCardGrid(userController.userList, context);
-                  },
-                ),
+              child: GetBuilder<UserController>(
+                builder: (_) {
+                  return
+                  userController.tempUserList.isEmpty ? showProgressIndicator() :
+                  userController.userList.isEmpty ? showEmptySearchResult() :
+                  buildUserCardGrid(userController.userList, context);
+                },
               ),
             ),
           ],
@@ -52,16 +50,18 @@ Widget buildUserCardGrid(List<GitHubUser> userList, BuildContext context) {
   double width = MediaQuery.of(context).size.width;
   int crossAxisCount = (width<500) ? 1 : (width<800) ? 1 : 2;
 
-  return SizedBox(
-    width: width>800 ? width*0.7 : width*0.9,
-    height: 1000,
-    child: GridView.count(
-      crossAxisCount: crossAxisCount,
-      childAspectRatio: 32/9,
-      padding: const EdgeInsets.only(bottom: 150.0),
-      mainAxisSpacing: 4.0,
-      crossAxisSpacing: 4.0,
-      children: userList.map((user) => UserCardItem2(user: user)).toList(),
+  return SingleChildScrollView(
+    child: SizedBox(
+      width: width>800 ? width*0.7 : width*0.9,
+      height: 1000,
+      child: GridView.count(
+        crossAxisCount: crossAxisCount,
+        childAspectRatio: 32/9,
+        padding: const EdgeInsets.only(bottom: 150.0),
+        mainAxisSpacing: 4.0,
+        crossAxisSpacing: 4.0,
+        children: userList.map((user) => UserCardItem2(user: user)).toList(),
+      ),
     ),
   );
 }
