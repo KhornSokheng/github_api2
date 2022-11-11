@@ -35,6 +35,7 @@ class RepositoryScreen extends StatelessWidget {
         child: Center(
           child: Column(
             children: [
+              SizedBox(height: 10,),
               kIsWeb ? UserCardWeb(user: user) : UserCardItem(user: user),
               SizedBox(height: 10,),
               Row(

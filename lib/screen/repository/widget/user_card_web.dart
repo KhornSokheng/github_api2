@@ -24,7 +24,7 @@ class UserCardWeb extends StatelessWidget {
 
       child: Card(
         shadowColor: Colors.grey,
-        elevation: 8,
+        elevation: 2,
         shape: RoundedRectangleBorder(
           side: BorderSide(color: Colors.white70, width: 1),
           borderRadius: BorderRadius.circular(10),

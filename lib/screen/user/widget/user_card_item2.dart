@@ -23,7 +23,7 @@ class UserCardItem2 extends StatelessWidget {
 
       child: Card(
         shadowColor: Colors.grey,
-        elevation: 8,
+        elevation: 2,
         shape: RoundedRectangleBorder(
           side: BorderSide(color: Colors.white70, width: 1),
           borderRadius: BorderRadius.circular(10),
@@ -83,9 +83,11 @@ class UserCardItem2 extends StatelessWidget {
             ),
             Container(
               width: 50,
-              color: Colors.grey[400],
-              child: Center(
-                child: Icon(Icons.arrow_forward_ios_outlined),
+              color: Colors.grey[300],
+              child: const Center(
+                child: Icon(Icons.arrow_forward_ios_outlined,
+                  color: Colors.black45,
+                ),
               ),
             )
 
