@@ -18,7 +18,7 @@ class UserCardItem extends StatelessWidget {
     double width = MediaQuery.of(context).size.width ;
 
     return InkWell(
-      onTap: () => Get.to(() => RepositoryScreen(user: user)),
+      // onTap: () => Get.to(() => RepositoryScreen(user: user)),
 
       child: Container(
           height: 230,

@@ -19,7 +19,10 @@ class UserCardItem2 extends StatelessWidget {
     double width = MediaQuery.of(context).size.width;
 
     return InkWell(
-      onTap: () => Get.to(() => RepositoryScreen(user: user)),
+      // onTap: () => Get.to(() => RepositoryScreen(user: user)),
+      onTap: () {
+        Navigator.pushNamed(context, '/repository/${user.login}');
+      },
 
       child: Card(
         shadowColor: Colors.grey,

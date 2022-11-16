@@ -10,6 +10,7 @@ class UserController extends GetxController {
   List<GitHubUser> userList =[];
   TextEditingController searchUserTextController = TextEditingController();
 
+
   Future<void> loadUser() async{
     userList = await ApiCall().getUser();
     tempUserList = userList;
@@ -22,6 +23,12 @@ class UserController extends GetxController {
     userList = tempUserList.where((user) => user.login!.contains(searchText.removeAllWhitespace.toLowerCase())).toList();
 
     update();
+  }
+
+  GitHubUser getUserByUsername(String username){
+    return tempUserList.firstWhere((element) => element.login == username,
+      orElse: () => GitHubUser()
+    );
   }
 
 
