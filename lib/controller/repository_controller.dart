@@ -13,10 +13,13 @@ class RepositoryController extends GetxController {
   String selectedYear = "";
   List<String> yearList = [];
 
+
   Future<void> loadRepository(String username) async{
     repositoryList = await ApiCall().getRepository(username);
     tempRepositoryList = repositoryList;
-    setYearList();
+    print("LoadRepos Runned");
+    print(repositoryList.length);
+    // setYearList();
     update();
   }
   void setSelectedYear(String newValue){

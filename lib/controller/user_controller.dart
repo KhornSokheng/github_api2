@@ -25,10 +25,17 @@ class UserController extends GetxController {
     update();
   }
 
-  GitHubUser getUserByUsername(String username){
-    return tempUserList.firstWhere((element) => element.login == username,
-      orElse: () => GitHubUser()
-    );
+  GitHubUser? getUserByUsername(String username){
+    // return tempUserList.firstWhere((element) => element.login == username,
+    //   orElse: () => GitHubUser()
+    // );
+
+    List<GitHubUser> list = tempUserList.where((element) => element.login == username).toList();
+    if(list.isNotEmpty){
+      return list.first;
+    }else{
+      return null;
+    }
   }
 
 

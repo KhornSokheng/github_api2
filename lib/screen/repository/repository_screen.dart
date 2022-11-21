@@ -13,33 +13,53 @@ import '../../model/repository_model.dart';
 import '../util/utility.dart';
 import 'widget/repository_card.dart';
 
-class RepositoryScreen extends StatelessWidget {
+class RepositoryScreen extends StatefulWidget {
   late GitHubUser user;
-  String username;
+  // String username;
+  // late List<Repository> _repositoryList = [];
 
-  RepositoryScreen({required this.username});
+  RepositoryScreen({required this.user});
 
+  @override
+  State<RepositoryScreen> createState() => _RepositoryScreenState();
+}
+
+class _RepositoryScreenState extends State<RepositoryScreen> {
   final repositoryController = Get.put(RepositoryController());
-  UserController userController = Get.find();
 
+  // UserController userController = Get.find();
+
+  Future<void> loadRepos() async {
+    await repositoryController.loadRepository(widget.user.login!);
+  }
+
+  @override
+  initState(){
+    print("init called");
+    loadRepos();
+
+
+  }
 
   @override
   Widget build(BuildContext context) {
 
-    user = userController.getUserByUsername(username);
-    if(user.login == null) return NotFoundPage();
-    repositoryController.loadRepository(user.login!);
+    // user = userController.getUserByUsername(username)!;
+    // if(user.login == null) return NotFoundPage();
+    // repositoryController.loadRepository(widget.user.login!);
+    // widget._repositoryList = repositoryController.repositoryList;
+    // print(widget._repositoryList.length);
 
     return Scaffold(
       appBar: AppBar(
-        title: Text("Repository of ${user.login}"),
+        title: Text("Repository of ${widget.user.login}"),
         centerTitle: true,
       ),
       body: Center(
         child: Column(
           children: [
             SizedBox(height: 10,),
-            kIsWeb ? UserCardWeb(user: user) : UserCardItem(user: user),
+            kIsWeb ? UserCardWeb(user: widget.user) : UserCardItem(user: widget.user),
             SizedBox(height: 10,),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -51,10 +71,16 @@ class RepositoryScreen extends StatelessWidget {
             ),
             Expanded(
               child: GetBuilder<RepositoryController>(
-                builder: (_) =>
-                    repositoryController.tempRepositoryList.isEmpty ? showProgressIndicator() :
-                    repositoryController.repositoryList.isEmpty ? showEmptySearchResult() :
-                    buildRepositoryGrid(repositoryList: repositoryController.repositoryList)
+                init: Get.put(RepositoryController()),
+                builder: (controller) {
+
+                  return
+                    controller.repositoryList.isEmpty ? showProgressIndicator() :
+                    controller.repositoryList.isEmpty
+                      ? showEmptySearchResult()
+                      : buildRepositoryGrid(repositoryList: controller.repositoryList);
+
+                }
               ),
             )
           ],
@@ -62,27 +88,30 @@ class RepositoryScreen extends StatelessWidget {
       ),
     );
   }
-}
 
-Widget buildRepositoryGrid( {required List<Repository> repositoryList}) {
+  Widget buildRepositoryGrid({List<Repository>? repositoryList}) {
 
-  double width = Get.mediaQuery.size.width;
-  int crossAxisCount = (width<500) ? 1 : (width<800) ? 2 : 4;
+    double width = context.width;
+    int crossAxisCount = (width<500) ? 1 : (width<800) ? 2 : 4;
 
-  return SingleChildScrollView(
-    child: SizedBox(
-      width: kIsWeb ? width*0.7 : width*0.9,
-      height: 900,
-      child: GridView.count(
-        crossAxisCount: crossAxisCount,
-        childAspectRatio: 4/3,
-        padding: const EdgeInsets.symmetric (vertical: 10.0),
-        mainAxisSpacing: 4.0,
-        crossAxisSpacing: 4.0,
-        children:
-        repositoryList.map((repository) => RepositoryCard(repository: repository,)).toList(),
+    return SingleChildScrollView(
+      child: SizedBox(
+        width: kIsWeb ? width*0.7 : width*0.9,
+        height: 900,
+        child: GridView.count(
+          crossAxisCount: crossAxisCount,
+          childAspectRatio: 4/3,
+          padding: const EdgeInsets.symmetric (vertical: 10.0),
+          mainAxisSpacing: 4.0,
+          crossAxisSpacing: 4.0,
+          children:repositoryList!.map((repository) => RepositoryCard(repository: repository)).toList(),
 
+        ),
       ),
-    ),
-  );
+    );
+  }
+
 }
+
+
+//repositoryList.map((repository) => RepositoryCard(repository: repository)).toList()

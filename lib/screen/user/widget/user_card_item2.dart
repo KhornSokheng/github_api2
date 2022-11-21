@@ -18,84 +18,78 @@ class UserCardItem2 extends StatelessWidget {
 
     double width = MediaQuery.of(context).size.width;
 
-    return InkWell(
-      // onTap: () => Get.to(() => RepositoryScreen(user: user)),
-      onTap: () {
-        Navigator.pushNamed(context, '/repository/${user.login}');
-      },
 
-      child: Card(
-        shadowColor: Colors.grey,
-        elevation: 2,
-        shape: RoundedRectangleBorder(
-          side: BorderSide(color: Colors.white70, width: 1),
-          borderRadius: BorderRadius.circular(10),
-        ),
-        clipBehavior: Clip.antiAliasWithSaveLayer,
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Container(
-              margin: EdgeInsets.only(left: 20),
-              height: kIsWeb || width >500 ? 120 : 80,
-              width: kIsWeb || width >500 ? 120 : 80,
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(100),
-                  image: DecorationImage(
-                      fit: BoxFit.fill,
-                      image: NetworkImage(user.avatarUrl!)
-                  )
-              ),
+    return Card(
+      shadowColor: Colors.grey,
+      elevation: 2,
+      shape: RoundedRectangleBorder(
+        side: BorderSide(color: Colors.white70, width: 1),
+        borderRadius: BorderRadius.circular(10),
+      ),
+      clipBehavior: Clip.antiAliasWithSaveLayer,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Container(
+            margin: EdgeInsets.only(left: 20),
+            height: kIsWeb || width >500 ? 120 : 80,
+            width: kIsWeb || width >500 ? 120 : 80,
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(100),
+                image: DecorationImage(
+                    fit: BoxFit.fill,
+                    image: NetworkImage(user.avatarUrl!)
+                )
             ),
-            Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                AutoSizeText(
-                  user.login!,
-                  maxLines: 1,
-                  softWrap: true,
-                  style: const TextStyle(
-                    color: Colors.blueAccent,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 20,
+          ),
+          Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              AutoSizeText(
+                user.login!,
+                maxLines: 1,
+                softWrap: true,
+                style: const TextStyle(
+                  color: Colors.blueAccent,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 20,
 
 
-                  ),
                 ),
-                SizedBox(height: 15),
-                MouseRegion(
-                  cursor: SystemMouseCursors.click,
-                  child: GestureDetector(
-                    onTap: ()=>ApiCall().goToUrl(user.htmlUrl!),
-                    child: Tooltip(
-                      message: user.htmlUrl!,
+              ),
+              SizedBox(height: 15),
+              MouseRegion(
+                cursor: SystemMouseCursors.click,
+                child: GestureDetector(
+                  onTap: ()=>ApiCall().goToUrl(user.htmlUrl!),
+                  child: Tooltip(
+                    message: user.htmlUrl!,
 
-                      child: AutoSizeText(user.htmlUrl!,
-                        maxLines: 2,
-                        style: const TextStyle(
-                          color: Colors.grey,
-                          fontWeight: FontWeight.bold,
-                          // fontSize: 16
-                        ),
+                    child: AutoSizeText(user.htmlUrl!,
+                      maxLines: 2,
+                      style: const TextStyle(
+                        color: Colors.grey,
+                        fontWeight: FontWeight.bold,
+                        // fontSize: 16
                       ),
                     ),
                   ),
                 ),
-              ],
-            ),
-            Container(
-              width: 50,
-              color: Colors.grey[300],
-              child: const Center(
-                child: Icon(Icons.arrow_forward_ios_outlined,
-                  color: Colors.black45,
-                ),
               ),
-            )
+            ],
+          ),
+          Container(
+            width: 50,
+            color: Colors.grey[300],
+            child: const Center(
+              child: Icon(Icons.arrow_forward_ios_outlined,
+                color: Colors.black45,
+              ),
+            ),
+          )
 
-          ],
-        ),
+        ],
       ),
     );
   }

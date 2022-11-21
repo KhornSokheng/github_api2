@@ -1,6 +1,7 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:github_api_v2/screen/repository/widget/search_repository_box.dart';
 import 'package:intl/intl.dart';
 
 import '../../../model/repository_model.dart';
@@ -20,7 +21,7 @@ class _RepositoryCardState extends State<RepositoryCard> {
 
     return InkWell(
       onTap: () {
-        Get.defaultDialog();
+        // Get.defaultDialog();
       },
       child: Card(
         shadowColor: Colors.grey,
@@ -42,7 +43,7 @@ class _RepositoryCardState extends State<RepositoryCard> {
                     Expanded(
                       flex: 3,
                       child: AutoSizeText(
-                        widget.repository.name!,
+                        widget.repository.name ?? "",
                         // softWrap: true,
                         overflow: TextOverflow.ellipsis,
                         maxLines: 1,
@@ -76,18 +77,18 @@ class _RepositoryCardState extends State<RepositoryCard> {
                     ),
                     SizedBox(width: 10,),
                     Text(
-                      widget.repository.watchersCount.toString(),
+                      widget.repository.watchersCount.toString() ?? "0",
                     ),
                   ],
                 ),
                 AutoSizeText(
-                  "Language: " + (widget.repository.language == null ? "": widget.repository.language),
+                  "Language: " + (widget.repository.language ?? ""),
 
                 ),
 
 
                 AutoSizeText(
-                    "Updated: ${DateFormat.yMd().format(widget.repository.updatedAt!)}",
+                    "Updated: ${DateFormat.yMd().format(widget.repository.updatedAt ?? DateTime.now())}",
                 ),
                 Row(
                   children: [

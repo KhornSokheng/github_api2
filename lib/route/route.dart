@@ -1,0 +1,1 @@
+enum Routes {USER, REPOSITORY, ERROR}
