@@ -1,11 +1,9 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:github_api_v2/controller/user_controller.dart';
 import 'package:github_api_v2/screen/repository/widget/search_repository_box.dart';
 import 'package:github_api_v2/screen/repository/widget/user_card_web.dart';
 import 'package:github_api_v2/screen/user/widget/user_card_item.dart';
-import 'package:github_api_v2/screen/util/not_found_page.dart';
 
 import '../../controller/repository_controller.dart';
 import '../../model/github_user.dart';
@@ -15,8 +13,6 @@ import 'widget/repository_card.dart';
 
 class RepositoryScreen extends StatefulWidget {
   late GitHubUser user;
-  // String username;
-  // late List<Repository> _repositoryList = [];
 
   RepositoryScreen({required this.user});
 
@@ -26,8 +22,6 @@ class RepositoryScreen extends StatefulWidget {
 
 class _RepositoryScreenState extends State<RepositoryScreen> {
   final repositoryController = Get.put(RepositoryController());
-
-  // UserController userController = Get.find();
 
   Future<void> loadRepos() async {
     await repositoryController.loadRepository(widget.user.login!);
@@ -43,12 +37,6 @@ class _RepositoryScreenState extends State<RepositoryScreen> {
 
   @override
   Widget build(BuildContext context) {
-
-    // user = userController.getUserByUsername(username)!;
-    // if(user.login == null) return NotFoundPage();
-    // repositoryController.loadRepository(widget.user.login!);
-    // widget._repositoryList = repositoryController.repositoryList;
-    // print(widget._repositoryList.length);
 
     return Scaffold(
       appBar: AppBar(
@@ -112,6 +100,3 @@ class _RepositoryScreenState extends State<RepositoryScreen> {
   }
 
 }
-
-
-//repositoryList.map((repository) => RepositoryCard(repository: repository)).toList()

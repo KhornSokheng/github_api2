@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:github_api_v2/route/route.dart';
 
 import '../controller/user_controller.dart';
@@ -36,7 +35,7 @@ class MyRouteInformationParser extends RouteInformationParser<Configuration> {
   RouteInformation? restoreRouteInformation(Configuration configuration) {
     if (configuration.isKnown) {
       if (configuration.route == Routes.USER) {
-        return RouteInformation(location: "/");
+        return const RouteInformation(location: "/");
       }
       if (configuration.route == Routes.REPOSITORY) {
         if (configuration.arguments.containsKey("user")) {
@@ -48,6 +47,6 @@ class MyRouteInformationParser extends RouteInformationParser<Configuration> {
         }
       }
     }
-    return RouteInformation(location: "/error");
+    return const RouteInformation(location: "/error");
   }
 }

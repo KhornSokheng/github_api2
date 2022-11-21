@@ -67,14 +67,6 @@ class UserCardWeb extends StatelessWidget {
                         ),
                       ),
                     ),
-                    // AutoSizeText(user.htmlUrl!,
-                    //   maxLines: 2,
-                    //   style: const TextStyle(
-                    //     color: Colors.grey,
-                    //     fontWeight: FontWeight.bold,
-                    //     // fontSize: 16
-                    //   ),
-                    // ),
                   ],
                 ),
                 SizedBox(height: 30),

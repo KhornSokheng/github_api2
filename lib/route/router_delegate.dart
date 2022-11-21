@@ -1,5 +1,4 @@
 // router_delegate.dart
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:github_api_v2/route/route.dart';
 import 'package:github_api_v2/screen/repository/repository_screen.dart';
@@ -46,7 +45,7 @@ class MyRouterDelegate extends RouterDelegate<Configuration>
       },
       pages: [
         MaterialPage(
-            key: ValueKey('user_screen'),
+            key: const ValueKey('user_screen'),
             child: UserScreen(
               onUserSelected: (user) {
                 state.user = user;
@@ -54,30 +53,30 @@ class MyRouterDelegate extends RouterDelegate<Configuration>
             )),
         if (state.user != null)
           MaterialPage(
-              key: ValueKey('repository_screen'),
+              key: const ValueKey('repository_screen'),
               child: RepositoryScreen(
                 // username: state.user!.login!,
                 user: state.user!
               )),
         if (state.isError)
-          MaterialPage(key: ValueKey('not_found_page'), child: NotFoundPage()),
+          const MaterialPage(key: ValueKey('not_found_page'), child: NotFoundPage()),
       ],
     );
   }
 
   bool _handlePopPage(Route route, result) {
     Page page = route.settings as Page;
-    if (page.key == ValueKey("user_screen")) {
+    if (page.key == const ValueKey("user_screen")) {
       return false;
     }
 
     route.didPop(result);
 
-    if (page.key == ValueKey("repository_screen")) {
+    if (page.key == const ValueKey("repository_screen")) {
       state.user = null;
       return true;
     }
-    if (page.key == ValueKey("not_found_page")) {
+    if (page.key == const ValueKey("not_found_page")) {
       state.user = null;
       return true;
     }

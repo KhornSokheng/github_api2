@@ -17,8 +17,6 @@ class RepositoryController extends GetxController {
   Future<void> loadRepository(String username) async{
     repositoryList = await ApiCall().getRepository(username);
     tempRepositoryList = repositoryList;
-    print("LoadRepos Runned");
-    print(repositoryList.length);
     // setYearList();
     update();
   }
