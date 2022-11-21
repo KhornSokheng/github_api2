@@ -32,7 +32,7 @@ class _RepositoryCardState extends State<RepositoryCard> {
         ),
         clipBehavior: Clip.antiAliasWithSaveLayer,
         child: Padding(
-          padding: EdgeInsets.fromLTRB(15,15,0,10),
+          padding: EdgeInsets.fromLTRB(15,5,0,5),
           child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -69,7 +69,7 @@ class _RepositoryCardState extends State<RepositoryCard> {
 
                   ],
                 ),
-                Divider(height: 8, thickness: 2, endIndent: 10,),
+                Divider(height: 4, thickness: 2, endIndent: 10,),
                 Row(
                   children: [
                     Icon(Icons.remove_red_eye,
@@ -88,7 +88,7 @@ class _RepositoryCardState extends State<RepositoryCard> {
 
 
                 AutoSizeText(
-                    "Updated: ${DateFormat.yMd().format(widget.repository.updatedAt ?? DateTime.now())}",
+                  "Updated: ${DateFormat.yMd().format(widget.repository.updatedAt ?? DateTime.now())}",
                 ),
                 Row(
                   children: [
@@ -103,7 +103,8 @@ class _RepositoryCardState extends State<RepositoryCard> {
                     ),
 
                   ],
-                )
+                ),
+
               ]
           ),
         ),

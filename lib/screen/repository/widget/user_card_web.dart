@@ -19,7 +19,7 @@ class UserCardWeb extends StatelessWidget {
     double width = MediaQuery.of(context).size.width;
 
     return SizedBox(
-      width: width*0.7,
+      width: width>800 ? width*0.7 : width*0.9,
       height: 150,
 
       child: Card(
@@ -34,9 +34,9 @@ class UserCardWeb extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             Container(
-              margin: EdgeInsets.symmetric(horizontal: 80),
-              height: kIsWeb || width >500 ? 120 : 80,
-              width: kIsWeb || width >500 ? 120 : 80,
+              margin: kIsWeb ? EdgeInsets.symmetric(horizontal: 80):EdgeInsets.symmetric(horizontal: 20),
+              height: kIsWeb && width > 800 ? 120 : 80,
+              width: kIsWeb && width > 800 ? 120 : 80,
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(100),
                   image: DecorationImage(
@@ -45,43 +45,45 @@ class UserCardWeb extends StatelessWidget {
                   )
               ),
             ),
-            Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Row(
-                  children: [
-                    MouseRegion(
-                      cursor: SystemMouseCursors.click,
-                      child: GestureDetector(
-                        onTap: () => ApiCall().goToUrl(user.htmlUrl!),
-                        child: AutoSizeText(
-                          user.login!,
-                          maxLines: 1,
-                          softWrap: true,
-                          style: const TextStyle(
-                            color: Colors.blueAccent,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 20,
+            ClipRect(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    children: [
+                      MouseRegion(
+                        cursor: SystemMouseCursors.click,
+                        child: GestureDetector(
+                          onTap: () => ApiCall().goToUrl(user.htmlUrl!),
+                          child: AutoSizeText(
+                            user.login!,
+                            maxLines: 1,
+                            softWrap: true,
+                            style: const TextStyle(
+                              color: Colors.blueAccent,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 20,
+                            ),
                           ),
                         ),
                       ),
-                    ),
-                  ],
-                ),
-                SizedBox(height: 30),
+                    ],
+                  ),
+                  SizedBox(height: 30),
 
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    buildDetail("30 Repositories"),
-                    buildDetail("10 Followers"),
-                    buildDetail("10 Followings"),
-                    buildDetail("233 Contributions"),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      buildDetail("30 Repositories"),
+                      buildDetail("10 Followers"),
+                      buildDetail("10 Followings"),
+                      buildDetail("233 Contributions"),
 
-                  ],
-                )
-              ],
+                    ],
+                  )
+                ],
+              ),
             )
           ],
         ),

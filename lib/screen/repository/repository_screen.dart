@@ -38,6 +38,8 @@ class _RepositoryScreenState extends State<RepositoryScreen> {
   @override
   Widget build(BuildContext context) {
 
+    double width = MediaQuery.of(context).size.width;
+
     return Scaffold(
       appBar: AppBar(
         title: Text("Repository of ${widget.user.login}"),
@@ -47,7 +49,7 @@ class _RepositoryScreenState extends State<RepositoryScreen> {
         child: Column(
           children: [
             SizedBox(height: 10,),
-            kIsWeb ? UserCardWeb(user: widget.user) : UserCardItem(user: widget.user),
+            kIsWeb && width > 1100 ? UserCardWeb(user: widget.user) : UserCardItem(user: widget.user),
             SizedBox(height: 10,),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -80,12 +82,12 @@ class _RepositoryScreenState extends State<RepositoryScreen> {
   Widget buildRepositoryGrid({List<Repository>? repositoryList}) {
 
     double width = context.width;
-    int crossAxisCount = (width<500) ? 1 : (width<800) ? 2 : 4;
+    int crossAxisCount = (width<600) ? 1 : (width<800) ? 2 : (width<1200) ? 3 : 4;
 
     return SingleChildScrollView(
       child: SizedBox(
         width: kIsWeb ? width*0.7 : width*0.9,
-        height: 900,
+        height: 1000,
         child: GridView.count(
           crossAxisCount: crossAxisCount,
           childAspectRatio: 4/3,
