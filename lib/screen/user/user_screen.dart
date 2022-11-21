@@ -56,11 +56,7 @@ class _UserScreenState extends State<UserScreen> {
 
   Widget buildUserCardGrid(List<GitHubUser> userList, BuildContext context) {
     double width = MediaQuery.of(context).size.width;
-    int crossAxisCount = (width < 500)
-        ? 1
-        : (width < 800)
-            ? 1
-            : 2;
+    int crossAxisCount = (width < 800) ? 1 : 2;
 
     return SingleChildScrollView(
       child: SizedBox(

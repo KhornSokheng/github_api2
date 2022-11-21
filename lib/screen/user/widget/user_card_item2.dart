@@ -31,53 +31,55 @@ class UserCardItem2 extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Container(
-            margin: EdgeInsets.only(left: 20),
-            height: kIsWeb || width >500 ? 120 : 80,
-            width: kIsWeb || width >500 ? 120 : 80,
+            margin: EdgeInsets.only(left: 20, right: 20),
+            height: kIsWeb && width > 800 ? 120 : 80,
+            width: kIsWeb && width > 800 ? 120 : 80,
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(100),
                 image: DecorationImage(
-                    fit: BoxFit.fill,
+                    fit: BoxFit.cover,
                     image: NetworkImage(user.avatarUrl!)
                 )
             ),
           ),
-          Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              AutoSizeText(
-                user.login!,
-                maxLines: 1,
-                softWrap: true,
-                style: const TextStyle(
-                  color: Colors.blueAccent,
-                  fontWeight: FontWeight.bold,
-                  fontSize: 20,
+          Expanded(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                AutoSizeText(
+                  user.login!,
+                  maxLines: 1,
+                  softWrap: true,
+                  style: const TextStyle(
+                    color: Colors.blueAccent,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 20,
 
 
+                  ),
                 ),
-              ),
-              SizedBox(height: 15),
-              MouseRegion(
-                cursor: SystemMouseCursors.click,
-                child: GestureDetector(
-                  onTap: ()=>ApiCall().goToUrl(user.htmlUrl!),
-                  child: Tooltip(
-                    message: user.htmlUrl!,
+                SizedBox(height: 15),
+                MouseRegion(
+                  cursor: SystemMouseCursors.click,
+                  child: GestureDetector(
+                    onTap: ()=>ApiCall().goToUrl(user.htmlUrl!),
+                    child: Tooltip(
+                      message: user.htmlUrl!,
 
-                    child: AutoSizeText(user.htmlUrl!,
-                      maxLines: 2,
-                      style: const TextStyle(
-                        color: Colors.grey,
-                        fontWeight: FontWeight.bold,
-                        // fontSize: 16
+                      child: AutoSizeText(user.htmlUrl!,
+                        maxLines: 2,
+                        style: const TextStyle(
+                          color: Colors.grey,
+                          fontWeight: FontWeight.bold,
+                          // fontSize: 16
+                        ),
                       ),
                     ),
                   ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
           Container(
             width: 50,

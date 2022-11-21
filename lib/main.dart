@@ -14,7 +14,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp.router(
-        title: 'Flutter Demo',
+        title: 'GitHub User API 2',
         theme: ThemeData(
           primarySwatch: Colors.blue,
         ),
