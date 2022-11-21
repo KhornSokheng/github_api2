@@ -63,7 +63,7 @@ class _RepositoryScreenState extends State<RepositoryScreen> {
                 builder: (controller) {
 
                   return
-                    controller.repositoryList.isEmpty ? showProgressIndicator() :
+                    controller.tempRepositoryList.isEmpty ? showProgressIndicator() :
                     controller.repositoryList.isEmpty
                       ? showEmptySearchResult()
                       : buildRepositoryGrid(repositoryList: controller.repositoryList);
