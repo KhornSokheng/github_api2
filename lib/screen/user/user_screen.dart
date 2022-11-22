@@ -2,13 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:github_api_v2/screen/user/widget/search_user_box.dart';
 import 'package:github_api_v2/screen/user/widget/user_card_item2.dart';
+import 'package:github_api_v2/view_model/user/user_view_model.dart';
 
 import '../../controller/user_controller.dart';
 import '../../model/github_user.dart';
+import '../../view_model/user/user_list_view_model.dart';
 import '../util/utility.dart';
 
 class UserScreen extends StatefulWidget {
-  final Function(GitHubUser)? onUserSelected;
+  final Function(UserViewModel)? onUserSelected;
 
   UserScreen({Key? key, this.onUserSelected}) : super(key: key);
 
@@ -17,11 +19,16 @@ class UserScreen extends StatefulWidget {
 }
 
 class _UserScreenState extends State<UserScreen> {
-  final userController = Get.put(UserController());
+  final userListViewModel = Get.put(UserListViewModel());
 
   @override
+  void initState() {
+    super.initState();
+    userListViewModel.loadUser();
+  }
+  @override
   Widget build(BuildContext context) {
-    userController.loadUser();
+    // userListViewModel.loadUser();
 
     return Scaffold(
         appBar: AppBar(
@@ -40,13 +47,13 @@ class _UserScreenState extends State<UserScreen> {
               height: 10,
             ),
             Expanded(
-              child: GetBuilder<UserController>(
+              child: GetBuilder<UserListViewModel>(
                 builder: (_) {
-                  return userController.tempUserList.isEmpty
+                  return userListViewModel.tempUserList.isEmpty
                       ? showProgressIndicator()
-                      : userController.userList.isEmpty
+                      : userListViewModel.userList.isEmpty
                           ? showEmptySearchResult()
-                          : buildUserCardGrid(userController.userList, context);
+                          : buildUserCardGrid(userListViewModel.userList);
                 },
               ),
             ),
@@ -54,7 +61,7 @@ class _UserScreenState extends State<UserScreen> {
         ));
   }
 
-  Widget buildUserCardGrid(List<GitHubUser> userList, BuildContext context) {
+  Widget buildUserCardGrid(List<UserViewModel> userList ) {
     double width = MediaQuery.of(context).size.width;
     int crossAxisCount = (width < 800) ? 1 : 2;
 

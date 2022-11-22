@@ -1,6 +1,8 @@
 import 'package:github_api_v2/model/github_user.dart';
 import 'package:github_api_v2/route/route.dart';
 
+import '../view_model/user/user_view_model.dart';
+
 class Configuration {
   late Routes route;
   late Map<String, dynamic> arguments;
@@ -14,7 +16,7 @@ class Configuration {
     arguments = {};
   }
 
-  Configuration.repository({required GitHubUser user}){
+  Configuration.repository({required UserViewModel user}){
     route = Routes.REPOSITORY;
     arguments = {"user": user};
 

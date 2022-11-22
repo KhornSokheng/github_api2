@@ -8,11 +8,12 @@ import 'package:github_api_v2/screen/user/widget/user_card_item.dart';
 import '../../controller/repository_controller.dart';
 import '../../model/github_user.dart';
 import '../../model/repository_model.dart';
+import '../../view_model/user/user_view_model.dart';
 import '../util/utility.dart';
 import 'widget/repository_card.dart';
 
 class RepositoryScreen extends StatefulWidget {
-  late GitHubUser user;
+  late UserViewModel user;
 
   RepositoryScreen({required this.user});
 
@@ -31,8 +32,6 @@ class _RepositoryScreenState extends State<RepositoryScreen> {
   initState(){
     print("init called");
     loadRepos();
-
-
   }
 
   @override

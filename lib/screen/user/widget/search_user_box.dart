@@ -1,12 +1,13 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:github_api_v2/controller/user_controller.dart';
+
+import '../../../view_model/user/user_list_view_model.dart';
 
 class SearchUserBox extends StatelessWidget {
   SearchUserBox({Key? key}) : super(key: key);
 
-  final UserController userController = Get.find();
+  final UserListViewModel userListViewModel = Get.find();
 
   @override
   Widget build(BuildContext context) {
@@ -16,8 +17,8 @@ class SearchUserBox extends StatelessWidget {
       width: width >800 ? width*0.7 : width*0.9,
       height: 50,
       child: TextField(
-          controller: userController.searchUserTextController,
-          onChanged: (v) => userController.searchUser(),
+          controller: userListViewModel.searchUserTextController,
+          onChanged: (v) => userListViewModel.searchUser(),
           decoration: const InputDecoration(
             border: OutlineInputBorder(),
             labelText: 'Search',

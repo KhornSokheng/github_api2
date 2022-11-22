@@ -5,10 +5,11 @@ import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:github_api_v2/model/github_user.dart';
 
+import '../../../view_model/user/user_view_model.dart';
 import '../../repository/repository_screen.dart';
 
 class UserCardItem extends StatelessWidget {
-  GitHubUser user;
+  UserViewModel user;
   // const UserCardItem({Key? key}) : super(key: key);
   UserCardItem({required this.user});
 
