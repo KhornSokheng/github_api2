@@ -4,10 +4,8 @@ import 'package:get/get.dart';
 import 'package:github_api_v2/screen/repository/widget/search_repository_box.dart';
 import 'package:github_api_v2/screen/repository/widget/user_card_web.dart';
 import 'package:github_api_v2/screen/user/widget/user_card_item.dart';
-
-import '../../controller/repository_controller.dart';
-import '../../model/github_user.dart';
-import '../../model/repository_model.dart';
+import 'package:github_api_v2/view_model/repository/repository_list_view_model.dart';
+import '../../view_model/repository/repository_view_model.dart';
 import '../../view_model/user/user_view_model.dart';
 import '../util/utility.dart';
 import 'widget/repository_card.dart';
@@ -22,10 +20,10 @@ class RepositoryScreen extends StatefulWidget {
 }
 
 class _RepositoryScreenState extends State<RepositoryScreen> {
-  final repositoryController = Get.put(RepositoryController());
+  final repositoryListViewModel = Get.put(RepositoryListViewModel());
 
   Future<void> loadRepos() async {
-    await repositoryController.loadRepository(widget.user.login!);
+    await repositoryListViewModel.loadRepository(widget.user.login);
   }
 
   @override
@@ -59,8 +57,8 @@ class _RepositoryScreenState extends State<RepositoryScreen> {
               ],
             ),
             Expanded(
-              child: GetBuilder<RepositoryController>(
-                init: Get.put(RepositoryController()),
+              child: GetBuilder<RepositoryListViewModel>(
+                // init: Get.put(RepositoryListViewModel()),
                 builder: (controller) {
 
                   return
@@ -78,7 +76,7 @@ class _RepositoryScreenState extends State<RepositoryScreen> {
     );
   }
 
-  Widget buildRepositoryGrid({List<Repository>? repositoryList}) {
+  Widget buildRepositoryGrid({List<RepositoryViewModel>? repositoryList}) {
 
     double width = context.width;
     int crossAxisCount = (width<600) ? 1 : (width<800) ? 2 : (width<1200) ? 3 : 4;

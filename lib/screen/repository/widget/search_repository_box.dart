@@ -1,13 +1,12 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:github_api_v2/controller/repository_controller.dart';
-import 'package:github_api_v2/controller/user_controller.dart';
+import 'package:github_api_v2/view_model/repository/repository_list_view_model.dart';
 
 class SearchRepositoryBox extends StatelessWidget {
   SearchRepositoryBox({Key? key}) : super(key: key);
 
-  final RepositoryController repositoryController = Get.find();
+  final RepositoryListViewModel repositoryController = Get.find();
 
   @override
   Widget build(BuildContext context) {

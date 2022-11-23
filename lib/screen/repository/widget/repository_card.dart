@@ -1,14 +1,11 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:github_api_v2/screen/repository/widget/search_repository_box.dart';
+import 'package:github_api_v2/view_model/repository/repository_view_model.dart';
 import 'package:intl/intl.dart';
-
-import '../../../model/repository_model.dart';
 
 class RepositoryCard extends StatefulWidget {
 
-  Repository repository;
+  RepositoryViewModel repository;
   RepositoryCard({required this.repository});
 
   @override
@@ -77,7 +74,7 @@ class _RepositoryCardState extends State<RepositoryCard> {
                     ),
                     SizedBox(width: 10,),
                     Text(
-                      widget.repository.watchersCount.toString() ?? "0",
+                      widget.repository.watchersCount.toString(),
                     ),
                   ],
                 ),
@@ -85,8 +82,6 @@ class _RepositoryCardState extends State<RepositoryCard> {
                   "Language: " + (widget.repository.language ?? ""),
 
                 ),
-
-
                 AutoSizeText(
                   "Updated: ${DateFormat.yMd().format(widget.repository.updatedAt ?? DateTime.now())}",
                 ),
@@ -104,7 +99,6 @@ class _RepositoryCardState extends State<RepositoryCard> {
 
                   ],
                 ),
-
               ]
           ),
         ),
