@@ -2,8 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:github_api_v2/route/route_information_parser.dart';
 import 'package:github_api_v2/route/router_delegate.dart';
+import 'package:hive/hive.dart';
+import 'package:hive_flutter/adapters.dart';
 
-void main() {
+void main() async {
+
+  await Hive.initFlutter();
   runApp(const MyApp());
 }
 

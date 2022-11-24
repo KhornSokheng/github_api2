@@ -5,7 +5,7 @@ import 'package:github_api_v2/view_model/repository/repository_view_model.dart';
 import '../../data/api_call.dart';
 import '../../model/repository_model.dart';
 
-class RepositoryListViewModel extends GetxController {
+class RepositoryListViewModel extends GetxController{
   List<RepositoryViewModel> repositoryList = [];
   List<RepositoryViewModel> tempRepositoryList = [];
   TextEditingController searchRepositoryTextController = TextEditingController();
