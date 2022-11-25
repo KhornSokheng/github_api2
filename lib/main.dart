@@ -5,9 +5,12 @@ import 'package:github_api_v2/route/router_delegate.dart';
 import 'package:hive/hive.dart';
 import 'package:hive_flutter/adapters.dart';
 
+import 'domain/di/domain_module.dart';
+
 void main() async {
 
   await Hive.initFlutter();
+  await registerHiveAdapter();
   runApp(const MyApp());
 }
 

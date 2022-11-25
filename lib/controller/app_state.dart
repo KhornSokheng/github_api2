@@ -1,5 +1,5 @@
 import 'package:flutter/cupertino.dart';
-import 'package:github_api_v2/model/github_user.dart';
+import 'package:github_api_v2/model/user/github_user.dart';
 import 'package:github_api_v2/view_model/user/user_view_model.dart';
 
 class AppState extends ChangeNotifier {

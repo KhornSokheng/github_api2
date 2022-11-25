@@ -1,4 +1,4 @@
-import '../../model/repository_model.dart';
+import '../../model/repository/repository_model.dart';
 
 class RepositoryViewModel {
 

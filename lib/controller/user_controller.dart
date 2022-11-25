@@ -3,7 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:github_api_v2/data/api_call.dart';
 
-import '../model/github_user.dart';
+import '../model/user/github_user.dart';
 
 class UserController extends GetxController {
   List<GitHubUser> tempUserList =[];

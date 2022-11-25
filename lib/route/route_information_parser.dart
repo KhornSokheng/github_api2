@@ -4,7 +4,7 @@ import 'package:github_api_v2/route/route.dart';
 import 'package:github_api_v2/view_model/user/user_list_view_model.dart';
 
 import '../controller/user_controller.dart';
-import '../model/github_user.dart';
+import '../model/user/github_user.dart';
 import '../view_model/user/user_view_model.dart';
 import 'configuration.dart';
 

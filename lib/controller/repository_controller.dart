@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 
 import '../data/api_call.dart';
-import '../model/repository_model.dart';
+import '../model/repository/repository_model.dart';
 
 class RepositoryController extends GetxController {
 

@@ -1,4 +1,4 @@
-import 'package:github_api_v2/model/github_user.dart';
+import 'package:github_api_v2/model/user/github_user.dart';
 
 class UserViewModel{
   final GitHubUser user;

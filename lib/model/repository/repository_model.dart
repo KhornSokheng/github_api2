@@ -4,14 +4,16 @@
 
 import 'dart:convert';
 
-import 'package:github_api_v2/model/github_user.dart';
+import 'package:github_api_v2/model/user/github_user.dart';
+import 'package:hive/hive.dart';
+part 'repository_model.g.dart';
 
 List<Repository> repositoryFromJson(String str) => List<Repository>.from(json.decode(str).map((x) => Repository.fromJson(x)));
 
 String repositoryToJson(List<Repository> data) => json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
 
-
-class Repository {
+@HiveType(typeId: 2)
+class Repository extends HiveObject {
   Repository({
     this.id,
     this.nodeId,
@@ -95,11 +97,28 @@ class Repository {
 
   int? id;
   String? nodeId;
+
+  @HiveField(0)
   String? name;
+  @HiveField(1)
+  DateTime? createdAt;
+  @HiveField(2)
+  DateTime? updatedAt;
+  @HiveField(3)
+  String? htmlUrl;
+  @HiveField(4)
+  int? watchersCount;
+  @HiveField(5)
+  dynamic language;
+  @HiveField(6)
+  String? defaultBranch;
+  @HiveField(7)
+  String? visibility;
+
   String? fullName;
   bool? private;
   GitHubUser? owner;
-  String? htmlUrl;
+
   dynamic description;
   bool? fork;
   String? url;
@@ -139,8 +158,8 @@ class Repository {
   String? labelsUrl;
   String? releasesUrl;
   String? deploymentsUrl;
-  DateTime? createdAt;
-  DateTime? updatedAt;
+
+
   dynamic pushedAt;
   String? gitUrl;
   String? sshUrl;
@@ -149,8 +168,8 @@ class Repository {
   String? homepage;
   int? size;
   int? stargazersCount;
-  int? watchersCount;
-  dynamic language;
+
+
   bool? hasIssues;
   bool? hasProjects;
   bool? hasDownloads;
@@ -166,11 +185,12 @@ class Repository {
   bool? isTemplate;
   bool? webCommitSignoffRequired;
   List<dynamic>? topics;
-  String? visibility;
+
+
   int? forks;
   int? openIssues;
   int? watchers;
-  String? defaultBranch;
+
 
   factory Repository.fromJson(Map<String, dynamic> json) => Repository(
     id: json["id"],

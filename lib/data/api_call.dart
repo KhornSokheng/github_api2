@@ -1,11 +1,12 @@
 
 import 'dart:convert';
 
+import 'package:github_api_v2/data/local/user_local_db.dart';
 import 'package:http/http.dart' as http;
 import 'package:url_launcher/url_launcher.dart';
 
-import '../model/repository_model.dart';
-import '../model/github_user.dart';
+import '../model/repository/repository_model.dart';
+import '../model/user/github_user.dart';
 
 
 
@@ -18,6 +19,7 @@ class ApiCall {
 
     if(response.statusCode == 200){
       List<GitHubUser> gitHubUser = gitHubUserFromJson(response.body);
+      await UserLocalDB().saveUser(gitHubUser);
       return gitHubUser;
     }else {
       print('Request failed with status: ${response.statusCode}.');

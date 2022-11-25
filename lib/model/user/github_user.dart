@@ -1,6 +1,9 @@
 
 import 'dart:convert';
 
+import 'package:hive/hive.dart';
+part 'github_user.g.dart';
+
 List<GitHubUser> gitHubUserFromJson(String str) => List<GitHubUser>.from(json.decode(str).map((x) => GitHubUser.fromJson(x)));
 
 String gitHubUserToJson(List<GitHubUser> data) => json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
@@ -9,13 +12,17 @@ String gitHubUserToJson(List<GitHubUser> data) => json.encode(List<dynamic>.from
 //
 //     final GitHubUser = GitHubUserFromJson(jsonString);
 
-class GitHubUser {
+@HiveType(typeId: 1)
+class GitHubUser extends HiveObject {
+  @HiveField(0)
   String? login;
   int? id;
   String? nodeId;
+  @HiveField(1)
   String? avatarUrl;
   String? gravatarId;
   String? url;
+  @HiveField(2)
   String? htmlUrl;
   String? followersUrl;
   String? followingUrl;

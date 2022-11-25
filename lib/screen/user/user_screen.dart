@@ -5,7 +5,7 @@ import 'package:github_api_v2/screen/user/widget/user_card_item2.dart';
 import 'package:github_api_v2/view_model/user/user_view_model.dart';
 
 import '../../controller/user_controller.dart';
-import '../../model/github_user.dart';
+import '../../model/user/github_user.dart';
 import '../../view_model/user/user_list_view_model.dart';
 import '../util/utility.dart';
 
