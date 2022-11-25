@@ -17,12 +17,12 @@ class RepositoryLocalDB{
     //store as 'username' and 'List of repository'
     reposBox.put(username, repositories);
 
-    List<Repository> tmp = getRepository(username);
+    List<Repository> tmp = getRepositoryByUsername(username);
     print(tmp.length);
 
   }
 
-  List<Repository> getRepository(String username)  {
+  List<Repository> getRepositoryByUsername(String username)  {
     // await initDB();
     return reposBox.get(username);
   }
