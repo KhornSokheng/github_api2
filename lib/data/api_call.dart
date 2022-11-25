@@ -1,6 +1,7 @@
 
 import 'dart:convert';
 
+import 'package:github_api_v2/data/local/repository_local_db.dart';
 import 'package:github_api_v2/data/local/user_local_db.dart';
 import 'package:http/http.dart' as http;
 import 'package:url_launcher/url_launcher.dart';
@@ -33,6 +34,7 @@ class ApiCall {
     var response = await http.get(url);
     if(response.statusCode == 200){
       final repositories = repositoryFromJson(response.body);
+      RepositoryLocalDB().saveRepository(username, repositories);
       return repositories;
 
     }else {

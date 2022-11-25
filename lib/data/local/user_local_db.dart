@@ -10,7 +10,7 @@ class UserLocalDB {
   }
 
   Future<void> saveUser(List<GitHubUser> users) async {
-    box = await Hive.openBox<GitHubUser>(boxName);
+    await initDB();
     // for(int i=0; i<users.length; i++){
     //   print(users[i].login);
     //   box.put(users[i].login, users[i]);
