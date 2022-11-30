@@ -5,6 +5,7 @@ import 'package:github_api_v2/screen/user/widget/user_card_item2.dart';
 import 'package:github_api_v2/view_model/user/user_view_model.dart';
 
 import '../../controller/user_controller.dart';
+import '../../data/local/counter_local_db.dart';
 import '../../model/user/github_user.dart';
 import '../../view_model/user/user_list_view_model.dart';
 import '../util/utility.dart';
@@ -34,6 +35,17 @@ class _UserScreenState extends State<UserScreen> {
         appBar: AppBar(
           title: Text("Git Hub User"),
           centerTitle: true,
+        ),
+        floatingActionButton: IconButton(
+          onPressed: () async{
+            await CounterLocalDB().initDB();
+            await CounterLocalDB().updateCounter();
+            print("Click");
+            print((CounterLocalDB().getCurrentCounter()).runCounter);
+            },
+
+          icon: const Icon(Icons.add_circle_outlined, color: Colors.orangeAccent,size: 30,),
+          
         ),
         body: Column(
           children: [

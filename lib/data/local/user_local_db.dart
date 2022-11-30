@@ -21,9 +21,7 @@ class UserLocalDB {
 
     //Good
     for (var user in users) {box.put(user.login, user);}
-    
-    GitHubUser tmp = getUserByUsername("defunkt");
-    print(tmp.id);
+
   }
 
   GitHubUser getUserByUsername(String username)  {
